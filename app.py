@@ -68,10 +68,13 @@ def main():
 
         st.text('The detected object(s) in ' + selected_language + ' is(are) called :')
         for i in detected_objects:
-            st.text(i + ' - ' + translate.translate(i))
-            audio_file = open('translated_audio.mp3', 'rb')
-            audio_bytes = audio_file.read()
-            st.audio(audio_bytes, format='audio/mp3')
+            text, audio = st.columns(2)
+            with text:
+                st.text(i + ' - ' + translate.translate(i))
+            with audio:
+                audio_file = open('translated_audio.mp3', 'rb')
+                audio_bytes = audio_file.read()
+                st.audio(audio_bytes, format='audio/mp3')
 
 if __name__ == "__main__":
     main()
