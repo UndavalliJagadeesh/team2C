@@ -1,5 +1,6 @@
 import requests
 import json
+from gtts import gTTS
 
 
 class ServerException(Exception):
@@ -55,4 +56,6 @@ class Translate:
         except ServerException:
             return 'Server Offline'
         data = json.loads(response.text)
+        audio = gTTS(text=data['translation'], lang=target_language_code)
+        audio.save('translated_audio.mp3')
         return data['translation']
