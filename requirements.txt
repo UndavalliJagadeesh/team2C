@@ -4,3 +4,4 @@ opencv-python-headless
 tensorflow
 requests
 gTTS
+streamlit-option-menu

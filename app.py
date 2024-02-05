@@ -2,6 +2,7 @@ from Detector import *
 from Translate import *
 
 import streamlit as st
+# from streamlit_option_menu import option_menu
 
 modelFile = 'efficientdet_d1_coco17_tpu-32.tar.gz'
 modelURL = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/' + modelFile
@@ -23,15 +24,34 @@ def capture():
 
 
 def main():
-    st.title("Object Detection with TensorFlow")
+    st.title("Foreign Language Learning through Object Detection using ANN")
 
-    language_options = ['Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque', 'Belarusian',
-                        'Bengali', 'Bosnian', 'Bulgarian', 'Catalan', 'Croatian', 'Czech', 'Danish', 'Dutch', 'English',
+    # selected = option_menu(
+    #     menu_title=None,
+    #     options=['Home', 'Detector'],
+    #     icons=['house', 'search'],
+    #     menu_icon='cast',
+    #     default_index=0,
+    #     orientation='horizontal'
+    # )
+    #
+    # if selected == 'Home':
+    #     st.write('In Development')
+    #
+    # elif selected == 'Detector':
+    language_options = ['Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque',
+                        'Belarusian',
+                        'Bengali', 'Bosnian', 'Bulgarian', 'Catalan', 'Croatian', 'Czech', 'Danish', 'Dutch',
+                        'English',
                         'Esperanto', 'Estonian', 'Filipino', 'Finnish', 'French', 'Galician', 'Georgian', 'German',
-                        'Greek', 'Gujarati', 'Hebrew', 'Hindi', 'Hungarian', 'Icelandic', 'Indonesian', 'Irish', 'Italian',
-                        'Japanese', 'Javanese', 'Kannada', 'Kazakh', 'Korean', 'Latin', 'Latvian', 'Lithuanian', 'Macedonian',
-                        'Malay', 'Malayalam', 'Maltese', 'Marathi', 'Mongolian', 'Nepali', 'Norwegian', 'Persian', 'Polish',
-                        'Portuguese', 'Punjabi', 'Romanian', 'Russian', 'Serbian', 'Sinhalese', 'Slovak', 'Slovenian',
+                        'Greek', 'Gujarati', 'Hebrew', 'Hindi', 'Hungarian', 'Icelandic', 'Indonesian', 'Irish',
+                        'Italian',
+                        'Japanese', 'Javanese', 'Kannada', 'Kazakh', 'Korean', 'Latin', 'Latvian', 'Lithuanian',
+                        'Macedonian',
+                        'Malay', 'Malayalam', 'Maltese', 'Marathi', 'Mongolian', 'Nepali', 'Norwegian', 'Persian',
+                        'Polish',
+                        'Portuguese', 'Punjabi', 'Romanian', 'Russian', 'Serbian', 'Sinhalese', 'Slovak',
+                        'Slovenian',
                         'Spanish', 'Swahili', 'Swedish', 'Tamil', 'Telugu', 'Thai', 'Turkish', 'Ukrainian', 'Urdu',
                         'Uzbek', 'Vietnamese', 'Welsh', 'Xhosa', 'Yiddish', 'Yoruba', 'Zulu']
 
@@ -75,6 +95,7 @@ def main():
                 audio_file = open('translated_audio.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/mp3')
+
 
 if __name__ == "__main__":
     main()
