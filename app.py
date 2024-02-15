@@ -4,8 +4,6 @@ from Translate import *
 import streamlit as st
 # from streamlit_option_menu import option_menu
 
-modelFile = 'efficientdet_d1_coco17_tpu-32.tar.gz'
-modelURL = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/' + modelFile
 classFile = 'coco.names'
 threshold = 0.5
 # API_KEY = '471b0e0033ab103162ac'
@@ -15,7 +13,6 @@ detector = Detector()
 translate = Translate()
 
 detector.readClasses(classFile)
-detector.downloadModel(modelURL)
 detector.loadModel()
 
 

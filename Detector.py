@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import os
 import tensorflow as tf
-from tensorflow.python.keras.utils.data_utils import get_file
 
 np.random.seed(20)
 
@@ -16,17 +15,10 @@ class Detector:
             self.classesList = f.read().splitlines()
         self.colorList = np.random.uniform(low=0, high=225, size=(len(self.classesList), 3))
 
-    def downloadModel(self, modelURL):
-        fileName = os.path.basename(modelURL)
-        self.modelName = fileName[:fileName.index('.')]
-
-        self.cacheDir = './pretrained_model'
-        os.makedirs(self.cacheDir, exist_ok=True)
-        get_file(fname=fileName, origin=modelURL, cache_dir=self.cacheDir, cache_subdir="checkpoints", extract=True)
 
     def loadModel(self):
         tf.keras.backend.clear_session()
-        self.model = tf.saved_model.load(os.path.join(self.cacheDir, "checkpoints", self.modelName, "saved_model"))
+        self.model = tf.saved_model.load(os.path.join("./saved_model"))
 
     def createBoundingBox(self, image, threshold=0.5):
         inputTensor = cv2.cvtColor(image.copy(), cv2.COLOR_BGR2RGB)
