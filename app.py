@@ -2,40 +2,20 @@ from Detector import *
 from Translate import *
 
 import streamlit as st
-# from streamlit_option_menu import option_menu
-
-classFile = 'coco.names'
-threshold = 0.5
-# API_KEY = '471b0e0033ab103162ac'
-selected_language = None
-
-detector = Detector()
-translate = Translate()
-
-detector.readClasses(classFile)
-detector.loadModel()
-
-
-def capture():
-    pass
 
 
 def main():
-    st.title("Foreign Language Learning through Object Detection using ANN")
+    classFile = 'coco.names'
+    threshold = 0.5
+    selected_language = None
 
-    # selected = option_menu(
-    #     menu_title=None,
-    #     options=['Home', 'Detector'],
-    #     icons=['house', 'search'],
-    #     menu_icon='cast',
-    #     default_index=0,
-    #     orientation='horizontal'
-    # )
-    #
-    # if selected == 'Home':
-    #     st.write('In Development')
-    #
-    # elif selected == 'Detector':
+    detector = Detector()
+    translate = Translate()
+    detector.readClasses(classFile)
+    detector.loadModel()
+
+    st.title("Foreign Language Learning through Object Detection using ANN ")
+
     language_options = ['Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque',
                         'Belarusian',
                         'Bengali', 'Bosnian', 'Bulgarian', 'Catalan', 'Croatian', 'Czech', 'Danish', 'Dutch',
