@@ -5,3 +5,4 @@ tensorflow
 requests
 gTTS
 streamlit-option-menu
+os
