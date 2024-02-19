@@ -1,6 +1,7 @@
 import requests
 import json
 from gtts import gTTS
+import os
 
 
 class ServerException(Exception):
@@ -57,5 +58,8 @@ class Translate:
             return 'Server Offline'
         data = json.loads(response.text)
         audio = gTTS(text=data['translation'], lang=target_language_code)
-        audio.save('translated_audio.mp3')
+        path = 'audio_files/' + base_string + '.mp3'
+        os.makedirs('audio_files', exist_ok=True)
+        audio.save(path)
+
         return data['translation']

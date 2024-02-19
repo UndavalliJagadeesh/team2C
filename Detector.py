@@ -33,7 +33,7 @@ class Detector:
 
         imH, imW, imC = image.shape
 
-        bboxIdx = tf.image.non_max_suppression(bboxs, classScores, max_output_size=2,
+        bboxIdx = tf.image.non_max_suppression(bboxs, classScores, max_output_size=4,
                                                iou_threshold=threshold, score_threshold=threshold)
 
         if len(bboxIdx) != 0:

@@ -1,0 +1,27 @@
+@import url("https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css");
+
+#MainMenu{
+    visibility: hidden;
+}
+footer, header{
+    visibility: hidden;
+}
+
+span.e1nzilvr1{
+    text-align: center;
+}
+.st-emotion-cache-13n2bn5 .etz5kuj9{
+    align-items: center;
+}
+
+/*.css-2sijqm a{*/
+/*    text-decoration: none !important;*/
+/*}*/
+/*.css-znku1x a{*/
+/*    text-decoration: none !important;*/
+/*}*/
+
+.appview-container{
+    background: rgb(219,232,246);
+    background: linear-gradient(45deg, rgba(219,232,246,1) 0%, rgba(250,220,233,1) 100%);
+}

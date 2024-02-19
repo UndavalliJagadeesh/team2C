@@ -1,10 +1,24 @@
 from Detector import *
 from Translate import *
-
+import os
 import streamlit as st
 
 
+def empty_directory(directory):
+    for file in os.listdir(directory):
+        file_path = os.path.join(directory, file)
+        if os.path.isfile(file_path):
+            os.unlink(file_path)
+
 def main():
+    st.set_page_config(page_title="Learn with ANN", layout="wide")
+    st.title("Foreign Language Learning through Object Detection using ANN ")
+
+    with open('app.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+    # dummy_text = "Model loading ......."
+    # st.write(dummy_text)
     classFile = 'coco.names'
     threshold = 0.5
     selected_language = None
@@ -14,7 +28,7 @@ def main():
     detector.readClasses(classFile)
     detector.loadModel()
 
-    st.title("Foreign Language Learning through Object Detection using ANN ")
+    # dummy_text = ""
 
     language_options = ['Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque',
                         'Belarusian',
@@ -60,19 +74,22 @@ def main():
 
         detected_objects = detector.detectedObjects
         st.text('Recognized objects :')
+
+
+        directory_to_empty = 'audio_files'
+        empty_directory(directory_to_empty)
+
         for i in detected_objects:
             st.text(i)
-
         st.text('The detected object(s) in ' + selected_language + ' is(are) called :')
         for i in detected_objects:
             text, audio = st.columns(2)
             with text:
                 st.text(i + ' - ' + translate.translate(i))
             with audio:
-                audio_file = open('translated_audio.mp3', 'rb')
+                audio_file = open('audio_files/'+i+'.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/mp3')
-
 
 if __name__ == "__main__":
     main()
