@@ -57,6 +57,7 @@ class Translate:
         except ServerException:
             return 'Server Offline'
         data = json.loads(response.text)
+
         audio = gTTS(text=data['translation'], lang=target_language_code)
         path = 'audio_files/' + base_string + '.mp3'
         os.makedirs('audio_files', exist_ok=True)

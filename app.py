@@ -12,13 +12,11 @@ def empty_directory(directory):
 
 def main():
     st.set_page_config(page_title="Learn with ANN", layout="wide")
-    st.title("Foreign Language Learning through Object Detection using ANN ")
+    st.title("Foreign Language Learning through Object Recognition using ANN ")
 
     with open('app.css') as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-    # dummy_text = "Model loading ......."
-    # st.write(dummy_text)
     classFile = 'coco.names'
     threshold = 0.5
     selected_language = None
@@ -28,7 +26,6 @@ def main():
     detector.readClasses(classFile)
     detector.loadModel()
 
-    # dummy_text = ""
 
     language_options = ['Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque',
                         'Belarusian',
