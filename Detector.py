@@ -5,8 +5,8 @@ import tensorflow as tf
 
 np.random.seed(20)
 
-
 class Detector:
+    model = tf.saved_model.load(os.path.join("./saved_model"))
     def __init__(self):
         self.detectedObjects = []
 
@@ -15,10 +15,10 @@ class Detector:
             self.classesList = f.read().splitlines()
         self.colorList = np.random.uniform(low=0, high=225, size=(len(self.classesList), 3))
 
-
     def loadModel(self):
-        tf.keras.backend.clear_session()
-        self.model = tf.saved_model.load(os.path.join("./saved_model"))
+        # tf.keras.backend.clear_session()
+        # self.model = tf.saved_model.load(os.path.join("./saved_model"))
+        pass
 
     def createBoundingBox(self, image, threshold=0.5):
         inputTensor = cv2.cvtColor(image.copy(), cv2.COLOR_BGR2RGB)
