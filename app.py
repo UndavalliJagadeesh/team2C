@@ -26,7 +26,6 @@ def main():
     detector.readClasses(classFile)
     detector.loadModel()
 
-
     language_options = ['Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque',
                         'Belarusian',
                         'Bengali', 'Bosnian', 'Bulgarian', 'Catalan', 'Croatian', 'Czech', 'Danish', 'Dutch',
@@ -70,23 +69,25 @@ def main():
         st.image(image_with_bounding_boxes)
 
         detected_objects = detector.detectedObjects
-        st.text('Recognized objects :')
+        if not(detected_objects):
+            st.text('No objects detected. Upload/Capture a better image')
+        else:
+            st.text('Recognized objects :')
+            
+            directory_to_empty = 'audio_files'
+            empty_directory(directory_to_empty)
 
-
-        directory_to_empty = 'audio_files'
-        empty_directory(directory_to_empty)
-
-        for i in detected_objects:
-            st.text(i)
-        st.text('The detected object(s) in ' + selected_language + ' is(are) called :')
-        for i in detected_objects:
-            text, audio = st.columns(2)
-            with text:
-                st.text(i + ' - ' + translate.translate(i))
-            with audio:
-                audio_file = open('audio_files/'+i+'.mp3', 'rb')
-                audio_bytes = audio_file.read()
-                st.audio(audio_bytes, format='audio/mp3')
+            for i in detected_objects:
+                st.text(i)
+            st.text('The detected object(s) in ' + selected_language + ' is(are) called :')
+            for i in detected_objects:
+                text, audio = st.columns(2)
+                with text:
+                    st.text(i + ' - ' + translate.translate(i))
+                with audio:
+                    audio_file = open('audio_files/'+i+'.mp3', 'rb')
+                    audio_bytes = audio_file.read()
+                    st.audio(audio_bytes, format='audio/mp3')
 
 if __name__ == "__main__":
     main()
